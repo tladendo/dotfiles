@@ -1,0 +1,18 @@
+" options {{{
+set defsearch=duckduckgo
+set gui=all
+" }}}
+
+" variables {{{
+let mapleader=","
+" }}}
+
+" mappings {{{
+nnoremap <leader>sv :source /Users/tladendo/.vimperratorrc<cr>
+nnoremap H gT
+nnoremap L gt
+nnoremap < :back<cr>
+nnoremap > :forward<cr>
+inoremap `thx Thanks,<Return>Tom Ladendorf
+inoremap `name Tom Ladendorf
+" }}}

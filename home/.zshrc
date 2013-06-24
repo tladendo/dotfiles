@@ -45,13 +45,69 @@ plugins=(git autojump)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin
+export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/local/share/npm/lib/node_modules/karma/bin:/Users/tladendo/bin
 set -o vi
+source ~/bin/neil-script.sh
+
+TOMCAT_HOME="/usr/local/Cellar/tomcat6/6.0.37"
 
 # aliases
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'
 alias c='clear'
+alias ez='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
+alias ev='vim ~/.vimrc'
+alias temp='/Applications/TemperatureMonitor.app/Contents/MacOS/tempmonitor'
+alias dtf='cd ~/.homesick/repos/dotfiles.git/home'
+alias gpom='git push origin master'
+alias serveme='python -m SimpleHTTPServer'
+alias serveme-shutup='python -m SimpleHTTPServer &> /dev/null &'
+alias smsu='serveme-shutup'
+alias serve-cgi='python -m CGIHTTPServer'
+alias scsu='serve-cgi &> /dev/null &'
+alias stopserving="ps -e | ack --output='\$1' '^\s*(\d+)\s[\d\w\?]+\s+[\d:.]+\spython\s-m' | xargs kill"
+alias sl='ls -r'
+alias tc="cd $TOMCAT_HOME"
+alias d='sdcv -u "WordNet"'
 
-# colors
+# functions
+function h() {
+  find /usr/local/Cellar | ack /$1$ | read x
+  $x "${@[@]:2}"
+}
+function cleandate() {
+  date | ack -o '\d{2}:\d{2}:\d{2}'
+}
+function tr() {
+  if [ `ls -l | ack '\.trash'` ];
+  then
+    mkdir .trash
+  fi
+  if [ $# -lt 1 ];
+  then
+    mkdir .trash
+  else
+    for x in "$@"
+    do
+      mv $x .trash
+    done
+  fi
+}
+CLEAN_PROMPT='false'
+function toggle_prompt() {
+  if [ $CLEAN_PROMPT = 'false' ];
+  then
+    function preexec() {
+      clear;
+    }
+    CLEAN_PROMPT='true'
+  else
+    function preexec() {
+
+    }
+    CLEAN_PROMPT='false'
+  fi
+}
+alias tp='toggle_prompt'
