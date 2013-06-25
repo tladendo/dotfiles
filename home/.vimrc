@@ -70,4 +70,19 @@ nnoremap <leader>r :r !
 execute pathogen#infect()
 " }}}
 
-
+" trying to hack lorem ipsum into the shape I want it in {{{
+function! Li(x)
+  execute "normal! maGo|"
+  execute ":Loremipsum " . a:x . "<cr>"
+  execute "normal! Gxy$`apGdd`a"
+endfunction
+" }}}
+" fold to the end {{{
+function! FoldRest()
+  let curr=line(".")
+  while curr < line("$")
+    execute "normal! zfatj"
+    let curr += 1
+  endwhile
+endfunction
+" }}}
