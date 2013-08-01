@@ -13,6 +13,7 @@ nnoremap H gT
 nnoremap L gt
 nnoremap < :back<cr>
 nnoremap > :forward<cr>
+nnoremap <leader>w :tabopen !w 
 inoremap `thx Thanks,<Return>Tom Ladendorf
 inoremap `name Tom Ladendorf
 " }}}
