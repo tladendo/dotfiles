@@ -52,7 +52,10 @@ set -o vi
 TOMCAT_HOME="/usr/local/Cellar/tomcat6/6.0.37"
 
 # aliases
-alias l='ls'
+
+TOMCAT_HOME="/usr/local/Cellar/tomcat6/6.0.37"
+
+# aliases
 alias la='ls -a'
 alias ll='ls -l'
 alias c='clear'
@@ -71,10 +74,42 @@ alias stopserving="ps -e | ack --output='\$1' '^\s*(\d+)\s[\d\w\?]+\s+[\d:.]+\sp
 alias sl='ls -r'
 alias tc="cd $TOMCAT_HOME"
 alias d='sdcv -u "WordNet"'
+alias tp='toggle_prompt'
+
+# global vars
+export G=git@github.com
+export TOMCAT_HOME="/usr/local/Cellar/tomcat6/6.0.37"
+export CMC_GIT
 
 # functions
 function dl() {
   sdcv -u "WordNet" $1 | less
+}
+function l() {
+  if [ $# -lt 1 ]
+  then
+    ls
+  else
+    i=1
+    for x in "$@"
+    do
+      copy[$i]="-$x"
+      i+=1
+    done
+    echo $copy
+    ls $copy
+    copy=( )
+  fi
+}
+alias l='l'
+function g() {
+  cd $1
+  ls
+}
+alias g='g'
+function h() {
+  find /usr/local/Cellar | ack /$1$ | read x
+  $x "${@[@]:2}"
 }
 function h() {
   find /usr/local/Cellar | ack /$1$ | read x
@@ -113,4 +148,15 @@ function toggle_prompt() {
     CLEAN_PROMPT='false'
   fi
 }
-alias tp='toggle_prompt'
+export POINTER=""
+function pts() {
+  POINTER=`pwd`
+}
+function ptg() {
+  cd $POINTER
+}
+function ptw() {
+  TEMP=$POINTER
+  sp
+  cd $TEMP
+}

@@ -26,6 +26,8 @@
   let mapleader=","
   " 4. Misc.
   filetype indent on
+  " off because it turns jslint on
+  " filetype plugin on
   syntax on
   autocmd vimenter * if !argc() | NERDTree | endif " if noargs -> open NERDtree
 " }}}
@@ -56,7 +58,6 @@ augroup END
 " shortcuts {{{
 nnoremap <leader>f :call FillNext()<cr>
 nnoremap <leader>q :q<cr>
-nnoremap <leader>d :quit<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
@@ -96,4 +97,19 @@ function! FillNext()
   execute "normal! 0a-"
   execute "normal! x".x."p"
 endfunction
+" }}}
+" zen coding {{{
+let g:user_zen_leader_key = '<c-z>'
+" }}}
+
+" angular conversion stuff {{{
+
+" }}}
+
+" indent-guides configuration {{{
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue ctermbg=1
+let g:indent_guides_guide_size=2
+let g:indent_guides_soft_pattern = '\s'
 " }}}
