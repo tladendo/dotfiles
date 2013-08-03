@@ -54,6 +54,7 @@ augroup END
 " }}}
 
 " shortcuts {{{
+nnoremap <leader>f :call FillNext()<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>d :quit<cr>
 nnoremap <leader>w :w<cr>
@@ -64,8 +65,9 @@ nnoremap <leader>sz :!source ~/.zshrc<cr>
 nnoremap <leader>t :tabnew 
 nnoremap <leader>cd :cd %:p:h<cr>
 nnoremap <leader>r :r !
+let g:user_zen_leader_key = '<c-e>'
+nnoremap <leader>u 0y$$p
 " }}}
-
 " Pathogen {{{
 execute pathogen#infect()
 " }}}
@@ -84,5 +86,14 @@ function! FoldRest()
     execute "normal! zfatj"
     let curr += 1
   endwhile
+endfunction
+" }}}
+" FillNext {{{
+function! FillNext()
+  execute "normal! $"
+  let x=wincol() - 3
+  execute "normal! o"
+  execute "normal! 0a-"
+  execute "normal! x".x."p"
 endfunction
 " }}}

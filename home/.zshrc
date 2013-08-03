@@ -45,9 +45,9 @@ plugins=(git autojump)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/local/share/npm/lib/node_modules/karma/bin:/Users/tladendo/bin
+export PATH=$PATH:/usr/local/opt/ruby/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/local/share/npm/lib/node_modules/karma/bin:/Users/tladendo/bin
 set -o vi
-source ~/bin/neil-script.sh
+#source ~/bin/neil-script.sh
 
 TOMCAT_HOME="/usr/local/Cellar/tomcat6/6.0.37"
 
@@ -73,6 +73,9 @@ alias tc="cd $TOMCAT_HOME"
 alias d='sdcv -u "WordNet"'
 
 # functions
+function dl() {
+  sdcv -u "WordNet" $1 | less
+}
 function h() {
   find /usr/local/Cellar | ack /$1$ | read x
   $x "${@[@]:2}"
