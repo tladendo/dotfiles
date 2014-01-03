@@ -12,7 +12,6 @@
   set wrap
   set linebreak
   set nolist
-  set hlsearch
   set showbreak=>>\ \ 
   " 2. Statusline
   set statusline=%f
@@ -53,10 +52,6 @@ augroup filetype_markdown
     autocmd!
     au BufRead,BufNewFile *.md set tw=80
     au BufRead,BufNewFile *.md syntax off
-    au BufRead,BufNewFile *.md inoremap >> <esc>>>la
-    au BufRead,BufNewFile *.md inoremap << <esc><<la
-    au BufRead,BufNewFile *.md inoremap hj <cr>- 
-    au BufRead,BufNewFile *.md inoremap jh <cr>- 
 augroup END
 " }}}
 
@@ -72,8 +67,7 @@ nnoremap <leader>t :tabnew
 nnoremap <leader>cd :cd %:p:h<cr>
 nnoremap <leader>r :r !
 let g:user_zen_leader_key = '<c-e>'
-inoremap jk <esc>
-inoremap kj <esc>
+nnoremap <leader>u 0y$$p
 " }}}
 " Pathogen {{{
 execute pathogen#infect()
@@ -95,6 +89,7 @@ function! FoldRest()
   endwhile
 endfunction
 " }}}
+<<<<<<< HEAD
 " FillNext {{{
 function! FillNext()
   execute "normal! $"
@@ -103,7 +98,7 @@ function! FillNext()
   execute "normal! 0a-"
   execute "normal! x".x."p"
 endfunction
-" }}}
+=======
 " zen coding {{{
 let g:user_zen_leader_key = '<c-z>'
 " }}}
@@ -118,9 +113,5 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue ctermbg=1
 let g:indent_guides_guide_size=2
 let g:indent_guides_soft_pattern = '\s'
-" }}}
-
-" copying to clipboard {{{
-  vnoremap <C-x> :!pbcopy <CR>
-  vnoremap <C-c> :w !pbcopy <CR>
+>>>>>>> 3287f0af63583bd1d27ecf0813cbe449a75c942b
 " }}}
